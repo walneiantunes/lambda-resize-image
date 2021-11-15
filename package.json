@@ -1,0 +1,25 @@
+{
+  "name": "lambda-resize-image",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "predeploy": "rm -rf node_modules/sharp && npm install --platform=linux --arch=x64 --target=12.22.1 sharp",
+    "deploy": "serverless deploy --verbose",
+    "postdeploy": "rm -rf node_modules/sharp && npm install sharp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/walneiantunes/lambda-resize-image.git"
+  },
+  "keywords": [],
+  "author": "Walnei Antunes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/walneiantunes/lambda-resize-image/issues"
+  },
+  "homepage": "https://github.com/walneiantunes/lambda-resize-image#readme",
+  "dependencies": {
+    "sharp": "^0.29.3"
+  }
+}

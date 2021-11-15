@@ -1,0 +1,51 @@
+service: your-function-name #change this
+
+frameworkVersion: "2"
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+  memorySize: 256
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:GetObject
+        - s3:PutObject
+        - s3:DeleteObject
+      Resource:
+        - arn:aws:s3:::*
+
+functions:
+  resize:
+    handler: handler.handle
+    environment:
+      bucket: your-bucket-name #change this
+      width: 800 #change this, width of new image
+      height: 600 #change this, height of new image
+      quality: 80 #change this, quality of new image
+      target: folder-to-new-image #change this
+      prefix: prefix-to-new-file #change this
+      suffix: sulffix-to-new-file #change this
+    events:
+      - s3:
+          bucket: your-bucket-name #change this
+          existing: false #change this, if your bucket exists, set as true
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: list
+            - suffix: .jpg
+      - s3:
+          bucket: your-bucket-name #change this
+          existing: false #change this, if your bucket exists, set as true
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: list
+            - suffix: .jpeg
+      - s3:
+          bucket: your-bucket-name #change this
+          existing: false #change this, if your bucket exists, set as true
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: list
+            - suffix: .png
