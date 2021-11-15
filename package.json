@@ -4,7 +4,7 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
-    "predeploy": "rm -rf node_modules/sharp && npm install --platform=linux --arch=64 --target=12.22.1 sharp",
+    "predeploy": "rm -rf node_modules/sharp && npm install --platform=linux --arch=x64 --target=12.22.1 sharp",
     "deploy": "serverless deploy --verbose",
     "postdeploy": "rm -rf node_modules/sharp && npm install sharp"
   },
